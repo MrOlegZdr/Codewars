@@ -66,25 +66,32 @@ public class EightiesKids2 {
 		String[] result = new String[0];
 
 		if ((socks != null) && (socks.length > 1)) {
-			result = new String[2];
 
-			if (name.equalsIgnoreCase("Punky")) {
-				result[0] = socks[0];
-				result[1] = socks[1];
-			} else if (name.equalsIgnoreCase("Henry")) {
-				// Create and populate LinkedHashMap with the number of different socks
-				LinkedHashMap<String, Integer> socksKind = new LinkedHashMap<>();
-				for (String sock : socks) {
-					if (!socksKind.containsKey(sock)) {
-						socksKind.put(sock, 1);
-					} else {
-						socksKind.put(sock, socksKind.get(sock) + 1);
-					}
+			// Create and populate LinkedHashMap with the number of different socks
+			LinkedHashMap<String, Integer> socksKind = new LinkedHashMap<>();
+			for (String sock : socks) {
+				if (!socksKind.containsKey(sock)) {
+					socksKind.put(sock, 1);
+				} else {
+					socksKind.put(sock, socksKind.get(sock) + 1);
 				}
-				Iterator<Map.Entry<String, Integer>> iterator = socksKind.entrySet().iterator();
+			}
+
+			Iterator<Map.Entry<String, Integer>> iterator = socksKind.entrySet().iterator();
+
+			if (name.equalsIgnoreCase("Punky") && (socksKind.size() > 1)) {
+				int i = 0;
+				result = new String[2];
+				while (iterator.hasNext() && (i < 2)) {
+					Map.Entry<String, Integer> entry = iterator.next();
+					result[i] = entry.getKey();
+					i++;
+				}
+			} else if (name.equalsIgnoreCase("Henry")) {
 				while (iterator.hasNext()) {
 					Map.Entry<String, Integer> entry = iterator.next();
 					if (entry.getValue() >= 2) {
+						result = new String[2];
 						result[0] = entry.getKey();
 						result[1] = entry.getKey();
 						break;
