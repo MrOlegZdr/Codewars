@@ -1,5 +1,9 @@
 package com.project.home.codewars.eightiesKids2;
 
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class EightiesKids2 {
 
 	public static String findSpaceship(String map) {
@@ -14,15 +18,10 @@ public class EightiesKids2 {
 		 * location.
 		 * 
 		 * The map will be given in the form of a string with \n separating new lines.
-		 * The bottom left of the map is [0, 0]. X is ALF's spaceship. Example map: 
-		 * ..........
-		 * ..........
-		 * ..........
-		 * .......X..
-		 * ..........
-		 * ..........
-		 * In this example: findSpaceship(map) => "[7, 2]" If you cannot find the
-		 * spaceship, the result should be: "Spaceship lost forever."
+		 * The bottom left of the map is [0, 0]. X is ALF's spaceship. Example map:
+		 * .......... .......... .......... .......X.. .......... .......... In this
+		 * example: findSpaceship(map) => "[7, 2]" If you cannot find the spaceship, the
+		 * result should be: "Spaceship lost forever."
 		 */
 
 		if (map.contains("X")) {
@@ -44,6 +43,60 @@ public class EightiesKids2 {
 		} else {
 			return "Spaceship lost forever.";
 		}
+	}
+
+	public static String[] getSocks(String name, String[] socks) {
+
+		/*
+		 * Punky loves wearing different colored socks, but Henry can't stand it.
+		 * 
+		 * Given an array of different colored socks, return a pair depending on who was
+		 * picking them out.
+		 * 
+		 * Example:
+		 * 
+		 * getSocks("Punky", ["red","blue","blue","green"]) -> ["red", "blue"]
+		 * 
+		 * Note that Punky can have any two colored socks, in any order, as long as they
+		 * are different and both exist. Henry always picks a matching pair.
+		 * 
+		 * If there is no possible combination of socks, return an empty array.
+		 */
+
+		String[] result = new String[0];
+
+		if ((socks != null) && (socks.length > 1)) {
+			result = new String[2];
+			// Create and populate LinkedHashMap with the number of different socks
+			LinkedHashMap<String, Integer> socksKind = new LinkedHashMap<>();
+			for (String sock : socks) {
+				if (!socksKind.containsKey(sock)) {
+					socksKind.put(sock, 1);
+				} else {
+					socksKind.put(sock, socksKind.get(sock) + 1);
+				}
+			}
+
+			Iterator<Map.Entry<String, Integer>> iterator = socksKind.entrySet().iterator();
+			if (name.equalsIgnoreCase("Punky")) {
+				for (int i = 0; i < 2 && iterator.hasNext(); i++) {
+					Map.Entry<String, Integer> entry = iterator.next();
+					result[i] = entry.getKey();
+				}
+			} else if (name.equalsIgnoreCase("Henry")) {
+				while (iterator.hasNext()) {
+					Map.Entry<String, Integer> entry = iterator.next();
+					if (entry.getValue() >= 2) {
+						result[0] = entry.getKey();
+						result[1] = entry.getKey();
+						break;
+					}
+				}
+			}
+
+		}
+
+		return result;
 	}
 
 }
