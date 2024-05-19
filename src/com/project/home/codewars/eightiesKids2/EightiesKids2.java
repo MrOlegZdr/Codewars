@@ -67,23 +67,21 @@ public class EightiesKids2 {
 
 		if ((socks != null) && (socks.length > 1)) {
 			result = new String[2];
-			// Create and populate LinkedHashMap with the number of different socks
-			LinkedHashMap<String, Integer> socksKind = new LinkedHashMap<>();
-			for (String sock : socks) {
-				if (!socksKind.containsKey(sock)) {
-					socksKind.put(sock, 1);
-				} else {
-					socksKind.put(sock, socksKind.get(sock) + 1);
-				}
-			}
 
-			Iterator<Map.Entry<String, Integer>> iterator = socksKind.entrySet().iterator();
 			if (name.equalsIgnoreCase("Punky")) {
-				for (int i = 0; i < 2 && iterator.hasNext(); i++) {
-					Map.Entry<String, Integer> entry = iterator.next();
-					result[i] = entry.getKey();
-				}
+				result[0] = socks[0];
+				result[1] = socks[1];
 			} else if (name.equalsIgnoreCase("Henry")) {
+				// Create and populate LinkedHashMap with the number of different socks
+				LinkedHashMap<String, Integer> socksKind = new LinkedHashMap<>();
+				for (String sock : socks) {
+					if (!socksKind.containsKey(sock)) {
+						socksKind.put(sock, 1);
+					} else {
+						socksKind.put(sock, socksKind.get(sock) + 1);
+					}
+				}
+				Iterator<Map.Entry<String, Integer>> iterator = socksKind.entrySet().iterator();
 				while (iterator.hasNext()) {
 					Map.Entry<String, Integer> entry = iterator.next();
 					if (entry.getValue() >= 2) {
