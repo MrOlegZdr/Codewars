@@ -1,8 +1,10 @@
-package com.project.home.codewars.eightiesKids2;
+package com.project.home.codewars;
 
 import java.util.Arrays;
 
-public class CodewarStarterEightiesKids2 {
+import com.project.home.codewars.eightiesKids2.EightiesKids2;
+
+public class CodewarStarter {
 
 	public static void main(String[] args) {
 
