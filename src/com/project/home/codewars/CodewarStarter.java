@@ -2,6 +2,7 @@ package com.project.home.codewars;
 
 import java.util.Arrays;
 
+import com.project.home.codewars.arraydiff.Kata;
 import com.project.home.codewars.eightiesKids2.EightiesKids2;
 
 public class CodewarStarter {
@@ -9,13 +10,13 @@ public class CodewarStarter {
 	public static void main(String[] args) {
 
 		// Run findSpaceship
-		checkFindSpaceship();
+//		checkFindSpaceship();
 
 		// Run checkSocks
-		checkSocks();
+//		checkSocks();
 
 		// Run arrayDiff
-
+		checkArrayDiff();
 	}
 
 	private static void checkFindSpaceship() {
@@ -35,6 +36,14 @@ public class CodewarStarter {
 		System.out.println(Arrays.toString(resultSocksHenry));
 		System.out.println(Arrays.toString(resultSocks));
 
+	}
+
+	private static void checkArrayDiff() {
+
+		int[] a = new int[] { 1, 2, 2, 2, 3 };
+		int[] b = new int[] { 2, 4 };
+
+		System.out.println(Arrays.toString(Kata.arrayDiff(a, b)));
 	}
 
 }

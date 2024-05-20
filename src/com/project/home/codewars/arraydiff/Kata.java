@@ -1,5 +1,10 @@
 package com.project.home.codewars.arraydiff;
 
+import java.util.Set;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+
 public class Kata {
 
 	public static int[] arrayDiff(int[] a, int[] b) {
@@ -17,6 +22,26 @@ public class Kata {
 		 * Kata.arrayDiff(new int[] {1, 2, 2, 2, 3}, new int[] {2}) => new int[] {1, 3}
 		 * 
 		 */
+
+		List<Integer> aAsList = new ArrayList<>();
+		Set<Integer> bAsSet = new LinkedHashSet<>();
+
+		// Populate list with elements from a
+		for (int number : a) {
+			aAsList.add(number);
+		}
+
+		// Create a set with no-repeating elements from b
+		for (int number : b) {
+			bAsSet.add(number);
+		}
+
+		aAsList.removeAll(bAsSet);
+
+		a = new int[aAsList.size()];
+		for (int i = 0; i < a.length; i++) {
+			a[i] = aAsList.get(i);
+		}
 
 		return a;
 	}
